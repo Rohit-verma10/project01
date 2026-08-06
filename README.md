@@ -1,31 +1,56 @@
-# AgriVision AI
+# 🌾 AgriVision AI
 
-AI-powered Crop Recommendation System
+AI Powered Smart Agriculture Platform
 
 ## Features
 
-- User Authentication
-- Crop Prediction using Machine Learning
-- Prediction History
-- Dashboard Analytics
-- FastAPI Backend
-- PostgreSQL Database
+✅ User Authentication
+
+✅ Crop Recommendation AI
+
+✅ Prediction History
+
+✅ Dashboard Analytics
+
+✅ PostgreSQL Database
+
+✅ FastAPI Backend
+
+## API Endpoints
+
+### Authentication
+
+POST /auth/register
+
+POST /auth/login
+
+### Prediction
+
+POST /ai/predict-crop
+
+GET /ai/history
+
+GET /ai/stats/dashboard
 
 ## Tech Stack
 
-- Python
+Backend:
 - FastAPI
 - PostgreSQL
 - SQLAlchemy
+
+AI:
 - Scikit-Learn
+- Joblib
 
-## Run Project
+Deployment:
+- GitHub
+- Render
 
-```bash
-pip install -r requirements.txt
-python -m uvicorn backend.app.main:app --reload
-```
+## Team
 
-## API Docs
+AgriVision AI Team
 
-http://127.0.0.1:8000/docs
+## Version
+
+1.0.0
