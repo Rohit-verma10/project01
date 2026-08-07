@@ -1,0 +1,10 @@
+venv312/
+venv/
+node_modules/
+backend/outputs/uploads/
+dist/
+__pycache__/
+.env
+backend/weights/*.pt
+backend/weights/*.pkl
+backend/weights/*.h5

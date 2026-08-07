@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0d1117;
+  color: white;
+}
+
+.app {
+  text-align: center;
+  min-height: 100vh;
+  padding: 30px;
+}
+
+.title {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.preview {
+  width: 300px;
+  border-radius: 15px;
+  border: 3px solid #22c55e;
+  margin-top: 20px;
+}
+
+.predict-btn {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  background: #22c55e;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.predict-btn:hover {
+  background: #16a34a;
+}
+
+.result-card {
+  margin: 40px auto;
+  max-width: 700px;
+  padding: 25px;
+  border-radius: 20px;
+  background: #161b22;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+}
+
+.progress {
+  width: 100%;
+  height: 22px;
+  background: #333;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #22c55e;
+}
