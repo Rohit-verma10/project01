@@ -10,6 +10,11 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [history, setHistory] = useState([]);
 
+  // Weather states
+  const [city, setCity] = useState("");
+  const [weather, setWeather] = useState(null);
+  const [weatherLoading, setWeatherLoading] = useState(false);
+
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
 
@@ -81,6 +86,36 @@ function App() {
     }
   };
 
+  // Weather API
+  const handleWeather = async () => {
+    if (!city.trim()) {
+      alert("Please enter a city");
+      return;
+    }
+
+    try {
+      setWeatherLoading(true);
+
+      const response = await axios.get(
+        `http://127.0.0.1:8000/weather/${city.trim()}`
+      );
+
+      if (response.data.error) {
+        alert(response.data.error);
+        setWeather(null);
+        return;
+      }
+
+      setWeather(response.data);
+    } catch (error) {
+      console.error(error);
+      alert("Weather API Error");
+      setWeather(null);
+    } finally {
+      setWeatherLoading(false);
+    }
+  };
+
   const downloadPDF = () => {
     if (!result) return;
 
@@ -126,7 +161,60 @@ function App() {
 
   return (
     <div className="app">
+
       <h1 className="title">🌱 AgriVision AI</h1>
+
+      {/* ================= WEATHER SECTION ================= */}
+
+      <div className="result-card">
+        <h2>🌦️ Weather Advisory</h2>
+
+        <input
+          type="text"
+          placeholder="Enter city"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+        />
+
+        <button
+          onClick={handleWeather}
+          disabled={weatherLoading}
+          className="predict-btn"
+          style={{ marginLeft: "10px" }}
+        >
+          {weatherLoading
+            ? "Loading..."
+            : "Check Weather"}
+        </button>
+
+        {weather && (
+          <div style={{ marginTop: "20px" }}>
+            <h3>Weather Information</h3>
+
+            <p>
+              <strong>City:</strong>{" "}
+              {weather.city}
+            </p>
+
+            <p>
+              🌡️ <strong>Temperature:</strong>{" "}
+              {weather.temperature}°C
+            </p>
+
+            <p>
+              💧 <strong>Humidity:</strong>{" "}
+              {weather.humidity}%
+            </p>
+
+            <p>
+              ☁️ <strong>Condition:</strong>{" "}
+              {weather.condition}
+            </p>
+          </div>
+        )}
+      </div>
+
+      {/* ================= DISEASE DETECTION ================= */}
 
       <input
         type="file"
@@ -168,6 +256,8 @@ function App() {
       >
         Reset
       </button>
+
+      {/* ================= PREDICTION RESULT ================= */}
 
       {result && (
         <div className="result-card">
@@ -239,17 +329,21 @@ function App() {
         </div>
       )}
 
+      {/* ================= PREDICTION HISTORY ================= */}
+
       {history.length > 0 && (
         <div className="result-card">
           <h2>Prediction History</h2>
 
           {history.map((item, index) => (
             <p key={index}>
-              🌿 {item.disease} — {item.confidence}%
+              🌿 {item.disease} —{" "}
+              {item.confidence}%
             </p>
           ))}
         </div>
       )}
+
     </div>
   );
 }
