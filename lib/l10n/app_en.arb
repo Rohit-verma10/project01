@@ -1,0 +1,9 @@
+{
+  "@@locale": "en",
+  "appTitle": "AgriVision AI",
+  "dashboard": "Dashboard",
+  "weather": "Weather",
+  "settings": "Settings",
+  "reports": "Reports",
+  "login": "Login"
+}
